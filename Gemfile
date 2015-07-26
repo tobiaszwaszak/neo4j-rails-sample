@@ -43,3 +43,4 @@ end
 
 
 gem 'neo4j', '~> 5.0.0'
+gem "devise-neo4j"
