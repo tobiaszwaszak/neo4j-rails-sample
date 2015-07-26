@@ -1,4 +1,4 @@
-class User 
+class User
   include Neo4j::ActiveNode
     #
     # Neo4j.rb needs to have property definitions before any validations. So, the property block needs to come before
@@ -8,7 +8,7 @@ class User
     # uncomment the property definitions for those modules. Otherwise, the unused property definitions can be deleted.
     #
 
-     property :username, :type =>   String
+     property :username, :type =>   String, index: :exact
      property :facebook_token, :type => String
      index :facebook_token
 
@@ -60,5 +60,6 @@ class User
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :out, :recipies, origin: :creators, model_class: :Recipe
 
 end
