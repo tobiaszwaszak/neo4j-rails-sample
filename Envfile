@@ -1,0 +1,5 @@
+development_or_test = ->{ ENV.fetch('RACK_ENV', 'development').match(/development|test/) }
+enable_defaults!(&development_or_test)
+
+variable :HOST, :string, default: 'beer.dev'
+variable :MAILER_SENDER, :string, default: 'beer@example.com'

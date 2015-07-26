@@ -15,10 +15,11 @@ require "rails/test_unit/railtie"
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
+ENVied.require(*ENV['ENVIED_GROUPS'] || Rails.groups)
 
 module Beer
   class Application < Rails::Application
-    
+
     config.generators do |g|
       g.orm             :neo4j
     end
@@ -39,5 +40,6 @@ module Beer
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    config.action_mailer.default_url_options = { host: ENVied.HOST }
   end
 end
